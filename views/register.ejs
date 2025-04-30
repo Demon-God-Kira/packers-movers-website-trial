@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | New_world Packers</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/888/888879.png" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@400;700&display=swap');
+
+    .title-font {
+      font-family: 'Orbitron', sans-serif;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .register-btn:hover {
+      background-color: #38bdf8;
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-tr from-gray-900 via-blue-800 to-blue-900 text-white min-h-screen flex items-center justify-center px-4">
+  
+  <!-- Register Card -->
+  <div class="bg-blue-950 shadow-xl rounded-3xl p-10 w-full max-w-xl border border-cyan-400" data-aos="fade-up">
+    <div class="text-center mb-8">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png" class="w-16 mx-auto mb-3" alt="Register">
+      <h2 class="text-3xl title-font font-bold text-cyan-400">Create Account</h2>
+      <p class="text-sm text-gray-400">Join us and experience stress-free moving!</p>
+    </div>
+
+    <!-- Error Message -->
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="text-center text-red-500 mb-4">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <!-- Success Message -->
+    <% if (typeof success !== 'undefined' && success) { %>
+      <div class="text-center text-green-400 mb-4">
+        <%= success %>
+      </div>
+    <% } %>
+
+    <form action="/register" method="POST" class="grid md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-gray-300 mb-1">Full Name</label>
+        <input type="text" name="name" required class="w-full p-3 rounded-md bg-blue-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+      </div>
+      <div>
+        <label class="block text-gray-300 mb-1">Email</label>
+        <input type="email" name="email" required class="w-full p-3 rounded-md bg-blue-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+      </div>
+      <div>
+        <label class="block text-gray-300 mb-1">Phone</label>
+        <input type="text" name="phone" required class="w-full p-3 rounded-md bg-blue-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+      </div>
+      <div>
+        <label class="block text-gray-300 mb-1">Password</label>
+        <input type="password" name="password" required class="w-full p-3 rounded-md bg-blue-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+      </div>
+      <div class="md:col-span-2">
+        <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-3 rounded-full transition duration-300 shadow-lg hover:shadow-xl register-btn">Register</button>
+      </div>
+    </form>
+
+    <p class="text-center text-sm text-gray-400 mt-6">Already have an account?
+      <a href="/login" class="text-cyan-300 hover:underline">Login here</a>
+    </p>
+  </div>
+
+  <script>
+    AOS.init();
+
+    function togglePassword(fieldId, iconElement) {
+      const field = document.getElementById(fieldId);
+      const eyeOpen = iconElement.querySelector('#eye-open');
+      const eyeClosed = iconElement.querySelector('#eye-closed');
+
+      if (field.type === 'password') {
+        field.type = 'text';
+        eyeOpen.classList.add('hidden');
+        eyeClosed.classList.remove('hidden');
+      } else {
+        field.type = 'password';
+        eyeOpen.classList.remove('hidden');
+        eyeClosed.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

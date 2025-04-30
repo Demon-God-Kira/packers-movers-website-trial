@@ -1,0 +1,25 @@
+<!-- Navbar -->
+<header class="bg-blue-950 shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" class="h-10" alt="Logo" />
+      <h1 class="text-3xl font-bold title-font text-cyan-400">New_world Packers</h1>
+    </div>
+    <nav class="space-x-6 hidden md:block">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/#about" class="nav-item">About</a>
+      <a href="/#services" class="nav-item">Services</a>
+      <a href="/#reviews" class="nav-item">Reviews</a>
+      <a href="/#contact" class="nav-item">Contact</a>
+
+      <% if (user) { %>
+        <a href="/dashboard" class="nav-item">Dashboard</a>
+        <a href="/order" class="nav-item">Book Now</a>
+        <a href="/logout" class="nav-item">Logout</a>
+      <% } else { %>
+        <a href="/login" class="login-button"><span>Login</span></a>
+        <a href="/register" class="nav-item">Register</a>
+      <% } %>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Place Order - New_world Packers</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/888/888879.png" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Fonts -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@300;400&display=swap');
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .title-font {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .order-btn:hover {
+      background-color: #38bdf8; /* Lighter blue on hover */
+      transform: scale(1.05); /* Slightly enlarge on hover */
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white">
+  <!-- Navbar -->
+  <header class="bg-blue-950 shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" class="h-10" alt="Logo">
+        <h1 class="text-2xl font-bold title-font text-cyan-400">New_world Packers</h1>
+      </div>
+      <div class="space-x-3">
+        <a href="/" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-full font-bold shadow-md">Back</a>
+        <a href="/logout" class="bg-cyan-400 hover:bg-cyan-500 text-black px-4 py-2 rounded-full font-bold shadow-md">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Order Section -->
+  <section class="py-20 px-6 max-w-4xl mx-auto" data-aos="zoom-in">
+    <h2 class="text-4xl text-center font-bold text-cyan-400 title-font mb-10">Place Your Order</h2>
+
+    <% if (message) { %>
+      <div class="bg-green-500 text-white p-4 rounded mb-6 text-center">
+        <%= message %>
+      </div>
+    <% } %>
+
+    <form id="order-form" action="/order" method="POST" class="bg-blue-950 bg-opacity-60 p-10 rounded-2xl shadow-2xl backdrop-blur-md space-y-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Full Name</label>
+          <input type="text" name="name" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Email</label>
+          <input type="email" name="email" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Phone</label>
+          <input type="tel" name="phone" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Pickup State</label>
+          <select name="pickup_state" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+            <option value="" disabled selected>Select State</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <!-- Add more states as needed -->
+          </select>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Pickup City</label>
+          <select name="pickup_city" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+            <option value="" disabled selected>Select City</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Delhi">Delhi</option>
+            <!-- Add more cities as needed -->
+          </select>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Pickup Address</label>
+          <textarea name="pickup_address" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"></textarea>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Delivery State</label>
+          <select name="delivery_state" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+            <option value="" disabled selected>Select State</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <!-- Add more states as needed -->
+          </select>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Delivery City</label>
+          <select name="delivery_city" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+            <option value="" disabled selected>Select City</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Delhi">Delhi</option>
+            <!-- Add more cities as needed -->
+          </select>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Delivery Address</label>
+          <textarea name="delivery_address" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"></textarea>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Pickup Date</label>
+          <input type="date" name="pickup_date" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Arriving Date</label>
+          <input type="date" name="arriving_date" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Items (Optional)</label>
+          <textarea name="items" class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"></textarea>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Additional Notes (Optional)</label>
+          <textarea name="additional_notes" class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"></textarea>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Insurance</label>
+          <select name="insurance" class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+            <option value="Yes">Yes</option>
+            <option value="No" selected>No</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-cyan-300 font-medium mb-2">Type of Packing</label>
+          <select name="packing_type" required class="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+            <option value="" disabled selected>Select Packing Type</option>
+            <option value="Home">Home</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Office">Office</option>
+            <option value="Vehicle">Vehicle</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-3 rounded-full transition duration-300 shadow-lg hover:shadow-xl">Place Order</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-6 text-center text-sm mt-20">
+    <p>&copy; 2025 New_world Packers & Movers. All rights reserved.</p>
+  </footer>
+
+  <script>
+    AOS.init();
+  </script>
+
+  <script>
+    // Client-side validation
+    document.getElementById('order-form').addEventListener('submit', function (event) {
+      const form = event.target;
+      let isValid = true;
+
+      // Check all required fields
+      form.querySelectorAll('[required]').forEach((field) => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('border-red-500', 'focus:ring-red-400');
+        } else {
+          field.classList.remove('border-red-500', 'focus:ring-red-400');
+        }
+      });
+
+      // Prevent form submission if validation fails
+      if (!isValid) {
+        event.preventDefault();
+        alert('Please fill in all required fields.');
+      }
+    });
+  </script>
+</body>
+</html>

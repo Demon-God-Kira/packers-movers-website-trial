@@ -1,0 +1,153 @@
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+header {
+  background-color: #1d3557;
+  padding: 10px 0;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+header .logo h1 {
+  font-size: 24px;
+  color: #f1faee;
+  font-weight: bold;
+}
+
+header a {
+  background-color: #e63946;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header a:hover {
+  background-color: #d90429;
+}
+
+/* Button Styling */
+button, .btn {
+  background-color: #2a9d8f;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #264653;
+}
+
+/* Input and Form Styles */
+input, select, textarea {
+  background-color: #1d3557;
+  color: #fff;
+  padding: 12px;
+  border: 1px solid #457b9d;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #e63946;
+  box-shadow: 0 0 5px rgba(230, 57, 70, 0.8);
+}
+
+/* Form Container Styles */
+form {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+form .form-group {
+  margin-bottom: 20px;
+}
+
+/* Section Styles */
+section {
+  padding: 40px 20px;
+}
+
+section h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #f1faee;
+  margin-bottom: 20px;
+}
+
+section .form-group label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Card Styling for Orders */
+.card {
+  background-color: #2a9d8f;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-bottom: 10px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #1d3557;
+  color: #f1faee;
+  text-align: center;
+  padding: 20px;
+}
+
+footer p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  header .logo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  section {
+    padding: 30px 10px;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+}

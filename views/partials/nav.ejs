@@ -1,0 +1,52 @@
+<header class="bg-blue-950 shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" class="h-10" alt="Logo" />
+      <h1 class="text-3xl font-bold title-font text-cyan-400">New_world Packers</h1>
+    </div>
+    <nav class="hidden md:block">
+      <% if (user) { %>
+        <div class="relative inline-block">
+          <!-- Dropdown toggle button -->
+          <button id="menu-button" class="w-10 h-10 flex items-center justify-center bg-cyan-400 text-black rounded-full focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <!-- Dropdown menu -->
+          <ul id="menu-options" class="absolute right-0 mt-2 w-48 bg-blue-800 text-white rounded-lg shadow-lg hidden">
+            <li><a href="/" class="block px-4 py-2 hover:bg-blue-700">Home</a></li>
+            <li><a href="/#about" class="block px-4 py-2 hover:bg-blue-700">About</a></li>
+            <li><a href="/#services" class="block px-4 py-2 hover:bg-blue-700">Services</a></li>
+            <li><a href="/#reviews" class="block px-4 py-2 hover:bg-blue-700">Reviews</a></li>
+            <li><a href="/#contact" class="block px-4 py-2 hover:bg-blue-700">Contact</a></li>
+            <li><a href="/dashboard" class="block px-4 py-2 hover:bg-blue-700">Dashboard</a></li>
+            <li><a href="/order" class="block px-4 py-2 hover:bg-blue-700">Book Now</a></li>
+            <li><a href="/logout" class="block px-4 py-2 hover:bg-blue-700">Logout</a></li>
+          </ul>
+        </div>
+      <% } else { %>
+        <a href="/login" class="login-button"><span>Login</span></a>
+      <% } %>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Toggle dropdown menu
+  const menuButton = document.getElementById('menu-button');
+  const menuOptions = document.getElementById('menu-options');
+
+  if (menuButton) {
+    menuButton.addEventListener('click', () => {
+      menuOptions.classList.toggle('hidden'); // Toggle the visibility of the dropdown menu
+    });
+
+    // Close the menu if clicked outside
+    document.addEventListener('click', (event) => {
+      if (!menuButton.contains(event.target) && !menuOptions.contains(event.target)) {
+        menuOptions.classList.add('hidden'); // Hide the dropdown menu
+      }
+    });
+  }
+</script>
