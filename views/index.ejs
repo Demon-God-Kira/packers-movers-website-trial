@@ -150,31 +150,31 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center relative" style="background-image: url('https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?auto=format&fit=crop&w=1470&q=80');">
-      <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm"></div>
-      <div class="text-center relative z-10 p-6 rounded-xl" data-aos="fade-up">
-        <% if (message) { %>
-          <div class="bg-green-500 text-white p-4 rounded mb-6">
-            <%= message %>
-          </div>
-        <% } %>
-        <h2 class="text-6xl font-bold mb-4 title-font text-cyan-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.6)]">Safe. Fast. Reliable.</h2>
-        <p class="text-xl text-gray-300 mb-6">Your trusted partner in moving across India</p>
-        <% if (user) { %>
-          <% if (!user.isAdmin) { %>
-            <a href="/order" class="book-now-button"><span>Get a Quote</span></a>
+    <section id="home" class="h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=870&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm"></div>
+        <div class="text-center relative z-10 p-6 rounded-xl" data-aos="fade-up">
+          <% if (message) { %>
+            <div class="bg-green-500 text-white p-4 rounded mb-6">
+              <%= message %>
+            </div>
           <% } %>
-        <% } else { %>
-          <a href="/login?redirect=/order" class="login-button"><span>Get a Quote</span></a>
-        <% } %>
-      </div>
-    </section>
+          <h2 class="text-6xl font-bold mb-4 title-font text-cyan-400 drop-shadow-[0_4px_4px_rgba(0,0,0,0.6)]">Safe. Fast. Reliable.</h2>
+          <p class="text-xl text-gray-300 mb-6">Your trusted partner in moving across India</p>
+          <% if (user) { %>
+            <% if (!user.isAdmin) { %>
+              <a href="/order" class="book-now-button"><span>Get a Quote</span></a>
+            <% } %>
+          <% } else { %>
+            <a href="/login?redirect=/order" class="login-button"><span>Get a Quote</span></a>
+          <% } %>
+        </div>
+      </section>
 
     <!-- About Section -->
     <section id="about" class="py-20">
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
         <div data-aos="fade-right">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=870&q=80" alt="About Us" class="rounded-lg shadow-xl w-full object-cover h-80 md:h-full transform hover:scale-105 transition duration-500" />
+          <img src="https://images.pexels.com/photos/7464704/pexels-photo-7464704.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="About Us" class="rounded-lg shadow-xl w-full object-cover h-80 md:h-full transform hover:scale-105 transition duration-500" />
         </div>
         <div data-aos="fade-left">
           <h2 class="text-4xl font-bold text-cyan-400 mb-4 title-font">About Us</h2>
