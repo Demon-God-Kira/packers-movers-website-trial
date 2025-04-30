@@ -1,5 +1,12 @@
 const mysql = require("mysql2/promise");
 
+// Skip database connection in production or when no database is required
+if (process.env.NODE_ENV === 'production' || process.env.NO_DATABASE === 'true') {
+  console.log("\u26a0 Skipping database connection in production mode or NO_DATABASE mode.");
+  module.exports = {};
+  return;
+}
+
 const db = mysql.createPool({
   host: "localhost",
   user: "root", // Your MySQL username
