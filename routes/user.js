@@ -2,31 +2,26 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../middleware/auth');
 
-// User Dashboard – Show user's orders
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  try {
-    // Dummy data for the dashboard
-    const dummyUser = req.session.user || { name: 'Guest User' };
-    const dummyTotalOrders = 5;
-    const dummyCurrentOrders = [
-      { id: 1, pickup_address: '123 Street A', delivery_address: '456 Street B', status: 'In Progress', created_at: new Date() },
-      { id: 2, pickup_address: '789 Street C', delivery_address: '101 Street D', status: 'Pending', created_at: new Date() }
-    ];
-    const dummyPastOrders = [
-      { id: 3, pickup_address: '111 Street E', delivery_address: '222 Street F', status: 'Completed', updated_at: new Date() },
-      { id: 4, pickup_address: '333 Street G', delivery_address: '444 Street H', status: 'Cancelled', updated_at: new Date() }
-    ];
+// Simplify the dashboard route to always display the dashboard page
+router.get('/dashboard', (req, res) => {
+  // Dummy data for the dashboard
+  const dummyUser = { name: 'Guest User' };
+  const dummyTotalOrders = 5;
+  const dummyCurrentOrders = [
+    { id: 1, pickup_address: '123 Street A', delivery_address: '456 Street B', status: 'In Progress', created_at: new Date() },
+    { id: 2, pickup_address: '789 Street C', delivery_address: '101 Street D', status: 'Pending', created_at: new Date() }
+  ];
+  const dummyPastOrders = [
+    { id: 3, pickup_address: '111 Street E', delivery_address: '222 Street F', status: 'Completed', updated_at: new Date() },
+    { id: 4, pickup_address: '333 Street G', delivery_address: '444 Street H', status: 'Cancelled', updated_at: new Date() }
+  ];
 
-    res.render('dashboard', {
-      user: dummyUser,
-      totalOrders: dummyTotalOrders,
-      currentOrders: dummyCurrentOrders,
-      pastOrders: dummyPastOrders
-    });
-  } catch (err) {
-    console.error('Error rendering dashboard:', err.message);
-    res.status(500).send('Internal Server Error');
-  }
+  res.render('dashboard', {
+    user: dummyUser,
+    totalOrders: dummyTotalOrders,
+    currentOrders: dummyCurrentOrders,
+    pastOrders: dummyPastOrders
+  });
 });
 
 // Cancel an order

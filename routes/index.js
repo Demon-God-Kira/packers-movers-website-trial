@@ -54,34 +54,23 @@ router.get('/get-a-quote', (req, res) => {
 
 // Dashboard page
 router.get('/dashboard', async (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/login');
-  }
+  const dummyUser = req.session.user || { name: 'Guest User' };
+  const dummyTotalOrders = 5;
+  const dummyCurrentOrders = [
+    { id: 1, pickup_address: '123 Street A', delivery_address: '456 Street B', status: 'In Progress', created_at: new Date() },
+    { id: 2, pickup_address: '789 Street C', delivery_address: '101 Street D', status: 'Pending', created_at: new Date() }
+  ];
+  const dummyPastOrders = [
+    { id: 3, pickup_address: '111 Street E', delivery_address: '222 Street F', status: 'Completed', updated_at: new Date() },
+    { id: 4, pickup_address: '333 Street G', delivery_address: '444 Street H', status: 'Cancelled', updated_at: new Date() }
+  ];
 
-  const userId = req.session.user.id;
-
-  try {
-    // Fetch total orders
-    const [totalOrdersResult] = await db.execute('SELECT COUNT(*) AS totalOrders FROM orders WHERE user_id = ?', [userId]);
-    const totalOrders = totalOrdersResult[0]?.totalOrders || 0;
-
-    // Fetch current orders
-    const [currentOrders] = await db.execute('SELECT * FROM orders WHERE user_id = ? AND status = "In Progress"', [userId]);
-
-    // Fetch past orders
-    const [pastOrders] = await db.execute('SELECT * FROM orders WHERE user_id = ? AND status = "Completed"', [userId]);
-
-    // Render the dashboard view with the fetched data
-    res.render('dashboard', {
-      user: req.session.user,
-      totalOrders,
-      currentOrders: currentOrders || [],
-      pastOrders: pastOrders || []
-    });
-  } catch (err) {
-    console.error('Error fetching dashboard data:', err.message);
-    res.status(500).send('Internal Server Error');
-  }
+  res.render('dashboard', {
+    user: dummyUser,
+    totalOrders: dummyTotalOrders,
+    currentOrders: dummyCurrentOrders,
+    pastOrders: dummyPastOrders
+  });
 });
 
 // Order page
@@ -103,61 +92,34 @@ router.get('/logout', (req, res, next) => {
 });
 
 // Example route: Get user by email
-router.get("/user", async (req, res) => {
-  try {
-    const user = await db.getUserByEmail(req.query.email);
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-    res.json(user);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to fetch user" });
-  }
+router.get("/user", (req, res) => {
+  const dummyUser = { email: req.query.email || 'guest@example.com', name: 'Guest User' };
+  res.json(dummyUser);
 });
 
 // Example route: Add a new order
-router.post("/orders", async (req, res) => {
-  try {
-    const orderId = await db.addOrder(req.body);
-    res.status(201).json({ message: "Order added successfully", orderId });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to add order" });
-  }
+router.post("/orders", (req, res) => {
+  const dummyOrderId = Math.floor(Math.random() * 1000);
+  res.status(201).json({ message: "Order added successfully", orderId: dummyOrderId });
 });
 
 // Example route: Update order status
-router.put("/orders/:id/status", async (req, res) => {
-  try {
-    await db.updateOrderStatus(req.params.id, req.body.status);
-    res.json({ message: "Order status updated successfully" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to update order status" });
-  }
+router.put("/orders/:id/status", (req, res) => {
+  res.json({ message: "Order status updated successfully" });
 });
 
 // Example route: Delete an order
-router.delete("/orders/:id", async (req, res) => {
-  try {
-    await db.deleteOrder(req.params.id);
-    res.json({ message: "Order deleted successfully" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to delete order" });
-  }
+router.delete("/orders/:id", (req, res) => {
+  res.json({ message: "Order deleted successfully" });
 });
 
 // Example route: Get all orders
-router.get("/orders", async (req, res) => {
-  try {
-    const orders = await db.getAllOrders();
-    res.json(orders);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to fetch orders" });
-  }
+router.get("/orders", (req, res) => {
+  const dummyOrders = [
+    { id: 1, pickup_address: '123 Street A', delivery_address: '456 Street B', status: 'In Progress' },
+    { id: 2, pickup_address: '789 Street C', delivery_address: '101 Street D', status: 'Pending' }
+  ];
+  res.json(dummyOrders);
 });
 
 module.exports = router;
