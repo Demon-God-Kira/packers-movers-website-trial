@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/db"); // Import the db object
 
 // Home page
 router.get('/', (req, res) => {

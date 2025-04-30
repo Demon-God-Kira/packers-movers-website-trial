@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/db'); // Ensure this imports the correct db object
 const { isLoggedIn } = require('../middleware/auth');
 
 // Route to render order page (GET)

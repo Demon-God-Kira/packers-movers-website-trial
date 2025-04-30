@@ -14,7 +14,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Ensure the correct db object is used in all routes
 app.use('/', require('./routes/index')); // Home, Login, Register
 app.use('/order', require('./routes/order')); // Order placement
 app.use('/user', require('./routes/user')); // User dashboard
