@@ -1,5 +1,6 @@
 const mysql = require("mysql2/promise");
 
+// Ensure the application continues to run even if the database connection fails
 let db;
 try {
   db = mysql.createPool({
@@ -18,22 +19,16 @@ try {
     console.log("✅ Database connection successful.");
   })();
 } catch (err) {
-  console.warn("⚠️ Skipping database connection due to error:", err.message);
+  console.warn("⚠️ Database connection failed. Running without a database:", err.message);
   db = null; // Fallback to no database
 }
 
-// Add a function to close the database connection
-module.exports.closeConnection = async () => {
-  if (db) {
-    try {
-      await db.end();
-      console.log("\u2705 Database connection closed successfully.");
-    } catch (err) {
-      console.error("\u274c Error closing the database connection:", err.message);
-    }
-  } else {
-    console.log("\u26a0 No database connection to close.");
+module.exports = db || {
+  execute: async () => {
+    console.warn("⚠️ Database is not connected. Returning dummy data.");
+    return [[], []]; // Return empty results for queries
+  },
+  end: async () => {
+    console.warn("⚠️ No database connection to close.");
   }
 };
-
-module.exports = db;
